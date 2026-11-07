@@ -1,0 +1,14 @@
+# Preprocessing Configuration
+video:
+  target_fps: 30
+  target_width: 640
+  target_height: 480
+  normalize_intensity: true
+  clahe_clip_limit: 2.0
+  clahe_tile_grid_size: [8, 8]
+
+mediapipe:
+  max_num_faces: 1
+  refine_landmarks: true # Required for 478 landmarks (468 facial + 10 iris)
+  min_detection_confidence: 0.5
+  min_tracking_confidence: 0.5

@@ -1,0 +1,18 @@
+# Kalman Filter Digital Twin State Estimation Configuration
+# State vector: [s_hypo, s_asym, s_blink, s_motor, v_hypo, v_asym]
+state_dim: 6
+measurement_dim: 4 # Observations: [meas_hypo, meas_asym, meas_blink, meas_motor]
+
+time_step: 1.0 # Nominal time interval between longitudinal observations (e.g. daily/weekly normalized)
+
+initial_state:
+  mean: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  variance: [1.0, 1.0, 1.0, 1.0, 0.1, 0.1]
+
+process_noise:
+  state_variance: 0.01
+  velocity_variance: 0.005
+
+measurement_noise:
+  video_features_variance: 0.15 # Observation noise for video-derived estimates
+  clinical_data_variance: 0.05   # Clinical exam observations generally have higher ground truth fidelity

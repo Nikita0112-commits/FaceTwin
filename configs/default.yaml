@@ -1,0 +1,21 @@
+# FaceTwin Default Configuration
+project:
+  name: "FaceTwin"
+  version: "0.1.0"
+  random_seed: 42
+  device: "cpu" # "cpu", "cuda", or "mps"
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  features_dir: "data/features"
+  synthetic_data_dir: "data/synthetic"
+  external_data_dir: "data/external"
+  checkpoints_dir: "experiments/checkpoints"
+  results_dir: "experiments/results"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  save_to_file: true
+  log_file: "experiments/results/facetwin.log"

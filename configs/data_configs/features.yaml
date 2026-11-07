@@ -1,0 +1,45 @@
+# Facial Movement & Asymmetry Feature Extraction Configuration
+asymmetry:
+  reference_landmarks:
+    nose_bridge: 168
+    nose_tip: 4
+    mid_chin: 152
+  paired_landmarks:
+    eyebrows:
+      left: [70, 63, 105, 66, 107]
+      right: [300, 293, 334, 296, 336]
+    eye_corners:
+      left_outer: 33
+      left_inner: 133
+      right_outer: 263
+      right_inner: 362
+    mouth_corners:
+      left: 61
+      right: 291
+    cheeks:
+      left: 205
+      right: 425
+
+blink_detection:
+  ear_threshold: 0.21
+  consecutive_frames_closed: 3
+  left_eye_indices:
+    top: 159
+    bottom: 145
+    inner: 133
+    outer: 33
+  right_eye_indices:
+    top: 386
+    bottom: 374
+    inner: 362
+    outer: 263
+
+mouth_rom:
+  upper_lip_center: 13
+  lower_lip_center: 14
+  mouth_left_corner: 61
+  mouth_right_corner: 291
+
+temporal_window:
+  window_size_frames: 60
+  stride_frames: 15

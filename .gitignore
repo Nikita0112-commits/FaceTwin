@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Data directories (preserve directory structure via .gitkeep, ignore data files)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/features/*
+!data/features/.gitkeep
+data/external/*
+!data/external/.gitkeep
+
+# Checkpoints and model weights
+experiments/checkpoints/*
+!experiments/checkpoints/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.bin
+
+# Logs and outputs
+experiments/results/*
+!experiments/results/.gitkeep
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Frontend dependencies and build
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+
+# IDE and OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
