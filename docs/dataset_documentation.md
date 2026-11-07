@@ -21,7 +21,7 @@
 - **Project Role:** High-resolution validation of kinematic movement parameters during clinical motor tasks.
 
 ### 1.4 Facial Palsy & Stroke Asymmetry Datasets
-- **YouTube Facial Palsy (YFP):** Clinically annotated video clips of unilateral and bilateral facial weakness.
+- **YouTube Facial Palsy (YFP):** Sourced from Artificial Vision Laboratory, National Taiwan University of Science and Technology (Hsu et al.). 18,641 frames across 24 palsy patients partitioned across 3 archives (`Image.zip`, `Image2.zip`, `Image3.zip`). Accessible via `YFPDatasetManager` directly in RAM with zero disk extraction. See detailed report in [`docs/yfp_dataset_report.md`](yfp_dataset_report.md).
 - **Roboflow & Kaggle Palsy Benchmarks:** Annotated images and video frames labeled for eye weakness, facial droop, and asymmetric smile dynamics.
 - **Project Role:** Evaluates the generalization of the bilateral asymmetry index and range-of-motion pipeline for stroke monitoring.
 

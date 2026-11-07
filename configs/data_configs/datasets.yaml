@@ -1,0 +1,17 @@
+# Dataset Path and Storage Configuration
+# Uses dynamic environment variable substitution or user home relative paths.
+# Do NOT hardcode absolute usernames in tracked repository files.
+
+yfp:
+  archive_1: "${YFP_ARCHIVE_1:-~/Downloads/Image.zip}"
+  archive_2: "${YFP_ARCHIVE_2:-~/Downloads/Image2.zip}"
+  archive_3: "${YFP_ARCHIVE_3:-~/Downloads/Image3.zip}"
+  extracted_dir: "${YFP_EXTRACTED_DIR:-~/Downloads/YFP_Extracted_2026}"
+  expected_subjects: 24
+  expected_total_images: 18641
+  in_memory_decoding: true
+  target_cache_dir: "data/features/yfp_landmarks"
+
+clinical:
+  ppmi_dir: "${PPMI_DIR:-data/raw/ppmi}"
+  updrs_table: "${UPDRS_TABLE:-MDS-UPDRS_Part_III.csv}"
