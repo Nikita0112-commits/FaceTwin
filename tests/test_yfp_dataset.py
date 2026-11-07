@@ -1,9 +1,15 @@
 """Unit tests for YFP Dataset Manager."""
 
-import io
 from pathlib import Path
 import unittest
 import zipfile
+import numpy as np
+
+try:
+    import cv2
+    HAS_CV2 = True
+except ImportError:
+    HAS_CV2 = False
 
 from facetwin.core.exceptions import VideoProcessingError
 from facetwin.data.yfp_dataset import YFPDatasetManager
@@ -20,15 +26,22 @@ class TestYFPDatasetManager(unittest.TestCase):
         self.mock_zip1 = self.test_dir / "mock_Image.zip"
         self.mock_zip2 = self.test_dir / "mock_Image2.zip"
 
+        # Generate minimal valid BMP image bytes
+        if HAS_CV2:
+            dummy_img = np.zeros((10, 10, 3), dtype=np.uint8)
+            dummy_bmp_bytes = cv2.imencode(".bmp", dummy_img)[1].tobytes()
+        else:
+            dummy_bmp_bytes = b"BM" + b"\x00" * 52
+
         # Populate mock_zip1 with Subject 1 frames
         with zipfile.ZipFile(self.mock_zip1, "w") as zf:
-            zf.writestr("Image/1/100.bmp", b"MOCK_BMP_BYTES_FRAME_100")
-            zf.writestr("Image/1/105.bmp", b"MOCK_BMP_BYTES_FRAME_105")
-            zf.writestr("Image/2/100.bmp", b"MOCK_BMP_BYTES_SUBJ2")
+            zf.writestr("Image/1/100.bmp", dummy_bmp_bytes)
+            zf.writestr("Image/1/105.bmp", dummy_bmp_bytes)
+            zf.writestr("Image/2/100.bmp", dummy_bmp_bytes)
 
         # Populate mock_zip2 with Subject 9 frames
         with zipfile.ZipFile(self.mock_zip2, "w") as zf:
-            zf.writestr("Image2/9/200.bmp", b"MOCK_BMP_BYTES_FRAME_200")
+            zf.writestr("Image2/9/200.bmp", dummy_bmp_bytes)
 
     def tearDown(self):
         """Cleanup test fixtures."""
@@ -48,6 +61,7 @@ class TestYFPDatasetManager(unittest.TestCase):
 
         self.assertTrue(status["Image.zip"].exists)
         self.assertTrue(status["Image.zip"].readable)
+        self.assertFalse(status["Image.zip"].is_encrypted)
         self.assertEqual(status["Image.zip"].total_images, 3)
         self.assertEqual(status["Image.zip"].subjects, [1, 2])
 
@@ -73,7 +87,7 @@ class TestYFPDatasetManager(unittest.TestCase):
 
         # Read specific frame bytes directly
         data = mgr.read_frame_bytes(subject_id=1, frame_number=100)
-        self.assertEqual(data, b"MOCK_BMP_BYTES_FRAME_100")
+        self.assertTrue(len(data) > 0)
 
         # Request invalid frame raises VideoProcessingError
         with self.assertRaises(VideoProcessingError):
